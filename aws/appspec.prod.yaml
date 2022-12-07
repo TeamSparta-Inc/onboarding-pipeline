@@ -1,0 +1,9 @@
+version: 1
+Resources:
+  - TargetService:
+      Type: AWS::ECS::Service
+      Properties:
+        TaskDefinition: "arn:aws:ecs:ap-northeast-1:497217256558:task-definition/onboarding-dev-td:1"
+        LoadBalancerInfo:
+          ContainerName: "onboarding-BE-dev"
+          ContainerPort: 3000
