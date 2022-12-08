@@ -2,8 +2,8 @@ FROM node:18.12.1 AS build
 
 WORKDIR /src/build
 
-COPY package*.json .
-COPY tsconfig.json .
+COPY package*.json ./
+COPY tsconfig.json ./
 
 ARG NODE_ENV=development
 ARG PORT=9999
