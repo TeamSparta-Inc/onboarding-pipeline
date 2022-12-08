@@ -14,7 +14,7 @@ ECR_IMG_LATEST_SERVER       := ${ECR_ENDPOINT_SERVER}:latest
 
 
 build:
-	@docker build -t onboarding .;
+	@docker build -t onboarding:latest .;
 	@docker tag ${LOCAL_IMG_COMMIT_SERVER} ${LOCAL_IMG_LATEST_SERVER};
 
 	@if [ $$env != "local" ]; then\
