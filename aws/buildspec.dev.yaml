@@ -14,7 +14,7 @@ phases:
       - echo Building the Docker image...
       - echo `pwd`
       - echo $CODEBUILD_RESOLVED_SOURCE_VERSION
-      - cd docker
+      # $ENV는 CodeBuild의 환경변수
       - make build env=$ENV
   post_build:
     commands:
@@ -24,7 +24,8 @@ phases:
       - printf '[{"name":"template-nginx","imageUri":"%s"}]' $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/template-nginx-test:latest > imagedefinitions.$ENV.json
 
 artifacts:
-  files:
+  files: 
+    # image definition의 역할이 무엇인가요?
     - docker/imagedefinitions.$ENV.json
-    - aws/taskdef.$ENV.json
-    - aws/appspec.$ENV.yaml
+    - aws/taskdef.dev.json
+    - aws/appspec.dev.yaml
