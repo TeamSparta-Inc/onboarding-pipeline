@@ -1,4 +1,4 @@
-import { Body, Controller, Inject, Post, UsePipes } from "@nestjs/common";
+import { Body, Controller, Get, Inject, Post, UsePipes } from "@nestjs/common";
 import { IConfirm } from "src/payment_clean/application/port/in/ConfirmInterface";
 import { JoiValidationPipe } from "src/payment_clean/adapter/in/web/nicepayments/validation/Validate";
 import { confirmSchema } from "./validation/ConfirmSchema";
@@ -10,6 +10,10 @@ export class ConfirmController {
     constructor(
         @Inject(CONFIRM_USECASE) private readonly confirmUseCase: IConfirm,
     ) { }
+    @Get('/')
+    health() {
+        return 'hi!';
+    }
 
     @Post('/confirm')
     @UsePipes(new JoiValidationPipe(confirmSchema))
